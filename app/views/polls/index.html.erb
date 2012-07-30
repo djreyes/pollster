@@ -1,2 +1,13 @@
-<h1>Polls#index</h1>
-<p>Find me in app/views/polls/index.html.erb</p>
+<%= provide(:title, "All Polls") %>
+<div class="hero-unit">
+  <h1>All Polls</h1>
+</div>
+
+<% @polls.each do |poll| %>
+  <div class="row">
+    <div class="span6">
+      <h1><%= poll.name %></h1>
+      <p>public link: <%= link_to "#{request.host}:#{request.port.to_s}/polls/#{poll.public_link}", poll_path(poll.public_link) %></p>
+    </div>
+  </div>
+<% end %>

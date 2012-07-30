@@ -1,2 +1,12 @@
-<h1>Polls#edit</h1>
-<p>Find me in app/views/polls/edit.html.erb</p>
+<%= provide(:title, @poll.name) %>
+<div class="hero-unit">
+  <h1><%= @poll.name %></h1>
+</div>
+
+<div class="row">
+  <div class="span6">
+    <h1><%= @poll.name %></h1>
+    <h2>admin link: <%= link_to "#{request.host}:#{request.port.to_s}/polls/#{@poll.admin_link}/edit", edit_poll_path(@poll.admin_link) %></h2>
+    <p>public link: <%= link_to "#{request.host}:#{request.port.to_s}/polls/#{@poll.public_link}", poll_path(@poll.public_link) %></p>
+  </div>
+</div>

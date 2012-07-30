@@ -10,6 +10,14 @@ class Poll < ActiveRecord::Base
   validates :public_link, :presence   => true,
                           :uniqueness => true
   
+  def to_param
+    [id, public_link.parameterize].join("-") unless self.public_link.nil?
+  end
+  
+  def self.find(input)
+    input.to_i == 0 ? find_by_public_link(input) : super
+  end
+  
   private
   
     def generate_admin_link
