@@ -1,12 +1,41 @@
 <%= provide(:title, @poll.name) %>
 <div class="hero-unit">
-  <h1><%= @poll.name %></h1>
+  <h1>Poll: <%= @poll.name %></h1>
 </div>
 
 <div class="row">
   <div class="span6">
-    <h1><%= @poll.name %></h1>
     <h2>admin link: <%= link_to "#{request.host}:#{request.port.to_s}/polls/#{@poll.admin_link}/edit", edit_poll_path(@poll.admin_link) %></h2>
-    <p>public link: <%= link_to "#{request.host}:#{request.port.to_s}/polls/#{@poll.public_link}", poll_path(@poll.public_link) %></p>
+    <h2>public link: <%= link_to "#{request.host}:#{request.port.to_s}/polls/#{@poll.public_link}", poll_path(@poll.public_link) %></h2>
+  </div>
+</div>
+
+<h1>Questions:</h1>
+<div class="row">
+  <div class="span6">
+    <ol>
+    <% @poll.questions.each do |question| %>
+      <li>
+        <%= question.inquiry %>&nbsp;
+        <%= link_to "edit", edit_poll_question_path(@poll.admin_link, question.id) %>&nbsp;
+        <%= link_to "delete", poll_question_path(@poll.admin_link, question.id), :method => :delete %>
+      </li>
+    <% end %>
+    </ol>
+  </div>
+</div>
+
+<h1>New Question:</h1>
+<div class="row">
+  <div class="span6">
+    <%= form_for @question, :url => poll_questions_path(@poll) do |f| %>
+      <%= render 'shared/error_messages' %>
+      
+      <%= f.label :inquiry %>
+      <%= f.text_field :inquiry %>
+
+      <%= f.submit "Add Question", class: "btn btn-large btn-primary" %>
+      
+    <% end %>
   </div>
 </div>

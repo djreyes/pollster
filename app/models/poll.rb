@@ -10,6 +10,8 @@ class Poll < ActiveRecord::Base
   validates :public_link, :presence   => true,
                           :uniqueness => true
   
+  has_many :questions
+  
   def to_param
     [id, public_link.parameterize].join("-") unless self.public_link.nil?
   end

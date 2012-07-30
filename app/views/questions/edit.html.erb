@@ -1,2 +1,20 @@
-<h1>Questions#edit</h1>
-<p>Find me in app/views/questions/edit.html.erb</p>
+<div class="hero-unit">
+  <h1>Question: <%= @question.inquiry %></h1>
+</div>
+
+<h2 class="pull-right">asked in Poll: <%= link_to @question.poll.name, poll_path(@question.poll.public_link) %></h2>
+
+<h1>Modify Question:</h1>
+<div class="row">
+  <div class="span6">
+    <%= form_for @question, :url => { :action => :update } do |f| %>
+      <%= render 'shared/error_messages' %>
+      
+      <%= f.label :inquiry %>
+      <%= f.text_field :inquiry %>
+
+      <%= f.submit "Modify Question", class: "btn btn-large btn-primary" %>
+    <% end %>
+    <%= button_to "Delete Question", poll_question_path, :method => :delete, :class => "btn btn-large btn-danger"%>
+  </div>
+</div>

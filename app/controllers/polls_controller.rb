@@ -15,7 +15,8 @@ class PollsController < ApplicationController
     @poll = Poll.new(params[:poll])
     if @poll.save
       flash[:notice] = "You have successfully created a poll!"
-      render 'edit'
+      @question = Question.new
+      redirect_to edit_poll_path(@poll.admin_link)
     else
       render 'new'
     end
@@ -23,6 +24,7 @@ class PollsController < ApplicationController
 
   def edit
     @poll = Poll.find_by_admin_link(params[:id])
+    @question = Question.new
   end
 
   def update
