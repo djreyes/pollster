@@ -6,6 +6,12 @@ gem 'bootstrap-sass'
 
 group :development do
   gem 'quiet_assets'
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'simplecov'
+  gem 'rspec-rails'
 end
 
 group :assets do
