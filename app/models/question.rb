@@ -4,4 +4,5 @@ class Question < ActiveRecord::Base
   validates :inquiry, :presence => true
   
   belongs_to :poll
+  has_many :responses
 end

@@ -9,13 +9,13 @@
   </div>
 </div>
 
-<h1>Questions:</h1>
+<h1>Questions</h1>
 <div class="row">
 
   <div class="span6">
     <ol>
     <% @poll.questions.each do |question| %>
-      <li><%= question.inquiry %></li>
+      <li><%= link_to question.inquiry, question_path(question) %></li>
     <% end %>
     </ol>
   </div>

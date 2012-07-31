@@ -10,7 +10,7 @@
   </div>
 </div>
 
-<h1>Questions:</h1>
+<h1>Questions</h1>
 <div class="row">
   <div class="span6">
     <ol>
@@ -20,12 +20,24 @@
         <%= link_to "edit", edit_poll_question_path(@poll.admin_link, question.id) %>&nbsp;
         <%= link_to "delete", poll_question_path(@poll.admin_link, question.id), :method => :delete %>
       </li>
+      
+      <p><%= pluralize(question.responses.count, "response") %> so far:</p>
+      <div class="row">
+        <div class="span6">
+          <ul>
+            <% question.responses.each do |response| %>
+              <li>"<%= response.content %>"</li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      
     <% end %>
     </ol>
   </div>
 </div>
 
-<h1>New Question:</h1>
+<h1>New Question</h1>
 <div class="row">
   <div class="span6">
     <%= form_for @question, :url => poll_questions_path(@poll) do |f| %>

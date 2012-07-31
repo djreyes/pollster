@@ -1,2 +1,14 @@
-<h1>Questions#show</h1>
-<p>Find me in app/views/questions/show.html.erb</p>
+<div class="hero-unit">
+  <h1>Question: <%= @question.inquiry %></h1>
+</div>
+
+<h2 class="pull-right">asked in Poll: <%= link_to @question.poll.name, poll_path(@question.poll.public_link) %></h2>
+
+<h1><%= pluralize(@question.responses.count, "response") %> so far</h1>
+
+<%= form_for @response, :url => question_responses_path(@question) do |f| %>
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+
+  <%= f.submit "Submit Response", class: "btn btn-large btn-primary" %>
+<% end %>
