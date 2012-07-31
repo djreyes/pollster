@@ -5,12 +5,12 @@ common: &common
 
 development:
   <<: *common
-  database: counter_development
+  database: pollster_development
 
 test:
   <<: *common
-  database: counter_test
+  database: pollster_test
 
 production:
   <<: *common
-  database: counter_production
+  database: pollster_production
